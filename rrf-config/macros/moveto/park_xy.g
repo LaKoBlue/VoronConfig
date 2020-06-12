@@ -7,4 +7,4 @@
 ;; *ADJUST* these coordinates based on your build volume
 
 G90                             ; absolute positioning
-G1 X150 Y270 F6000              ; move to center rear of build space
+G1 X150 Y300 F6000              ; move to center rear of build space

@@ -13,4 +13,4 @@
 
 M574 Z0 C"nil" ; no Z endstop switch, free up Z endstop input
 M558 P5 C"zstop" I0 H0.3 R0.1 F25 T99999 A5 S0.01 B1
-G31 P1000 X0 Y0 Z-0.46
+G31 P1000 X0 Y0 Z0.41

@@ -79,8 +79,8 @@ M140 H0
 
 ;HotEnd
 M308 S1 P"e0temp" Y"thermistor" B4700 C7.060000e-8 A"Hotend"    ; configure sensor 1 as thermistor
-M950 H1 C"e0heat" T1                           ; create nozzle heater output on e0heat and map it to sensor 1
-M143 H1 S315                                  ; set temperature limit for heater 1 to 275C
+M950 H1 C"e0heat" T1                            ; create nozzle heater output on e0heat and map it to sensor 1
+M143 H1 S300                                    ; set temperature limit for heater 1 to 300°C
 ;M307 H1 B0 S1.00                               ; disable bang-bang mode for the nozzle heater and set PWM limit
 
 ;Chamber 
@@ -113,7 +113,7 @@ M106 P0 S0 F300                ; part fan
 
 ;Hot End
 M950 F1 C"fan0" Q500
-M106 P1 T60 H1           ; hotend fan PWMED DOWN
+M106 P1 T60 H1  ; hotend fan PWMED DOWN
 
 ;Board cooling
 M950 F2 C"!^fan2" Q500 

@@ -17,4 +17,4 @@
 ;;  Your inductive probe pins ("M558 P*")
 
 M558 P5 C"zprobe.in" I1 A3 H12 R0.1 F800 T99999 A1 B1
-G31 P1000 X0 Y25 Z0
+G31 P1000 X0 Y25 Z3.438

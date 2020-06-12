@@ -9,8 +9,8 @@ M98 P"/macros/drive/z_downcurrent.g"
 M98 P"/macros/zprobe/use_ifast.g"
 G30                             ; z-probe as configured
 M98 P"/macros/drive/z_fullcurrent.g"
-G90 
-G1 Z1 F99999
+G90
+G1 Z5 F99999
 M98 P"/macros/zprobe/use_islow.g"
 G30                             ; z-probe as configured
 

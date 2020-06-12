@@ -1,6 +1,6 @@
 ;; This script will perform a repeatable G29 scan, allow DWC to display the results,
 ;; and then remove the mapping and reset leveling to the mechanical zero.
-;; 
+;;
 ;; In order to perform a G29 bed mesh scan with the result values centered on Z0,
 ;; first we need to re-home the Z-axis based on the inductive probe height.
 ;; Note that when performing the scan, we need to use the same inductive probe speed
@@ -20,8 +20,17 @@ M98 P"/macros/homing/scripts/zhop_up.g"
 M98 P"/macros/homing/scripts/probe_zi.g"
 ;M98 P"/macros/zprobe/use_islow.g"       ; switch back to slow probing to match the /macros/homing/homezi call
 M106 P1 T150:160 H1:2 F30 X255
-G1 X25 Y0 Z2						
-M558 P5 I1 A5 H1.1 R0.1 F75 T400 A5 S0.01 B1	;manual islow
+G1 X25 Y0 Z5
+; P8:       connected to Zmin SIG and GND
+; I0:       P8 expects NC, TL-Q5MC2-Z is also NC
+; T18000:   Move to probe points at 300mm/s T400 is somewhat slower
+; F1200:    Probing Speed: 20mm/s F75 is somewhot slower
+; H5:       Dive height: 5mm
+; A5 S0.01  Perform up to 5 touches until change is below 0.01mm
+; R0.02     Set z-Probe recovery time to 0.02 seconds
+; B1:       Turn off heaters while probing
+
+M558 P8 C"zprobe.in" I0 A5 H5 R0.2 F75 T400 A5 S0.01 B1	;manual islow
 G31 P1000 X0 Y25 Z0				;manual islow
 
 
