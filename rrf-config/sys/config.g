@@ -15,8 +15,8 @@ M83						; ...but relative extruder moves
 ;; geometry ------------------------------------------------
 
 M667 S1                     ; corexy mode
-M208 X0 Y0 Z- S1	        ; S1 = set axes minima
-M208 X292.5 Y296.4 Z280 S0  ; S0 = set axes maxima
+M208 X0 Y0 Z-0.50 S1	    ; S1 = set axes minima
+M208 X295.7 Y299.6 Z280 S0  ; S0 = set axes maxima
 M574 X2 Y2 Z0 S1            ; endstops
 
 
@@ -63,30 +63,30 @@ M574 Y2 S1 P"ystop"   ; Y min active low endstop switch
 M574 Z1 S1 P"zstop"   ; Z min active low endstop switch
 
 ; Bed leveling params
-M671 X-45:-45:348:348 Y7:373:373:7 S20	; Z leadscrews positions
-M557 X50:250 Y50:250 S50                ; Bed mesh grid
+M671 X-51:-51:382:382 Y-4:383.5:383.5:-4 S20	; Z leadscrews positions
+M557 X50:241 Y50:235 S50                    ; Bed mesh grid
 
 
 ; thermal section ----------------------------------------------
 M308 S3 Y"mcu-temp" A"Board" ; Board thermal sensor
 M912 P0 S-8                  ; MCU tempurature sensor correction (subtract 8°K)
 
-;Bed heater not used
-M308 S0 P"bedtemp" Y"thermistor" T100000 B3950 A"Bed Pad"  ; configure sensor 0 as thermistor on pin temp0
-M950 H0 C"bedheat" T0                                      ; create bed heater output on out0 and map it to sensor 0
-M143 H0 S120                                               ; set temperature limit for heater 0 to 120C
-M307 H0 B0 S0.6                                            ; disable bang-bang mode for the bed heater and set PWM limit
-M140 P0 H0                                                 ; Mark heater h0 as bed heater (for DWC)
+;Bed heater single thermistor setup, not used
+;M308 S0 P"bedtemp" Y"thermistor" T100000 B3950 A"Bed Pad"  ; configure sensor 0 as thermistor on pin temp0
+;M950 H0 C"bedheat" T0                                      ; create bed heater output on out0 and map it to sensor 0
+;M143 H0 S120                                               ; set temperature limit for heater 0 to 120C
+;M307 H0 B0 S0.6                                            ; disable bang-bang mode for the bed heater and set PWM limit
+;M140 P0 H0                                                 ; Mark heater h0 as bed heater (for DWC)
 
 ;Bed heater dual thermistor setup
-;M308 S0 P"bedtemp" Y"thermistor" T100000 B3950 A"Bed Pad"   ; configure sensor 0 as thermistor on pin bedtemp (pad sensor)
-;M308 S2 P"e1temp" Y"thermistor" T100000 B3950  A"Bed Plate" ; configure sensor 2 as thermistor on pin e1temp (plate sensor)
-;M950 H0 C"bedheat" T0 Q10                                   ; create bed heater output on out0 and map it to sensor 2 (plate sensor). Set PWM frequency to 10Hz
-;M143 H0 P100 T0 A2 S110 C0                                  ; Regulate(A2) bed heater (H0) to have pad sensor below 110°C. Use Heater monitor 100 for it
-;M143 H0 P101 T1 A1 S120 C0                                  ; Shut off (A1) bed heater (H0) if pad sensor exceeds 120°C. Use Heater monito 101 for it
-;M143 H0 S120                                                ; Set bed heater max temperature to 120°C
-;M307 H0 B1 S0.6                                             ; Enable Bang Bang mode and set PWM to 60% to avoid warping
-;M140 P0 H0                                                  ; Mark heater h0 as bed heater (for DWC)
+M308 S0 P"bedtemp" Y"thermistor" T100000 B3950 A"Bed Pad"   ; configure sensor 0 as thermistor on pin bedtemp (pad sensor)
+M308 S2 P"e1temp" Y"thermistor" T100000 B3950 A"Bed Plate"  ; configure sensor 2 as thermistor on pin e1temp (plate sensor)
+M950 H0 C"bedheat" T2 Q10                                   ; create bed heater output on out0 and map it to sensor 2 (plate sensor). Set PWM frequency to 10Hz
+M143 H0 P100 T0 A2 S110 C0                                  ; Regulate(A2) bed heater (H0) to have pad sensor below 110°C. Use Heater monitor 100 for it
+M143 H0 P101 T0 A1 S120 C0                                  ; Shut off (A1) bed heater (H0) if pad sensor exceeds 120°C. Use Heater monitor 101 for it
+M143 H0 S120                                                ; Set bed heater max temperature to 120°C
+M307 H0 B1 S0.6                                             ; Enable Bang Bang mode and set PWM to 60% to avoid warping
+M140 P0 H0                                                  ; Mark heater H0 as bed heater (for DWC)
 
 ;HotEnd
 M308 S1 P"e0temp" Y"thermistor" T100000 B4700 C7.060000e-8 A"Hotend" ; configure sensor 1 as thermistor
@@ -123,9 +123,8 @@ T0                  ; activate tool 0
 M575 P1 S1 B57600   ; activate paneldue
 
 
-; z-probe offset
-;G31 Z3.58
-
+; define the z-probe, unsure, might not been needed
+M558 P5 C"zprobe.in" I1 A5 H1.45 R0.1 F65 T7000 A5 S0.01 B1
 
 ; read config-override.g
 M501

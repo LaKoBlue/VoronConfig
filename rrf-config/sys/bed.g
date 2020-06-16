@@ -2,10 +2,11 @@ M561                            ; clear bed transform
 
 ;; Quickly find approximate bed level
 M561
+M98 P"/macros/homing/scripts/zhop_up.g"
+M98 P"/macros/homing/scripts/probe_zi.g"
 
 G90                             ; absolute positioning
-G0 X295 Y250 Z15 F99999         ; move just inside the back-right corner, subtracting probe offset
-M98 P"/macros/homing/scripts/probe_zi.g"
+G0 X290 Y250 Z15 F99999         ; move just inside the back-right corner, subtracting probe offset
 
 ;; Switch to slow probing, and perform multi-pass gantry leveling.
 M98 P"/macros/zprobe/use_ifast.g"

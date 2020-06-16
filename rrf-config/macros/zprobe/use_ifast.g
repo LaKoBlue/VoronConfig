@@ -16,5 +16,5 @@
 ;; *ADJUST* this file for:
 ;;  Your inductive probe pins ("M558 P*")
 
-M558 P5 C"zprobe.in" I1 A3 H12 R0.1 F800 T99999 A1 B1
-G31 P1000 X0 Y25 Z3.438
+M558 P5 C"zprobe.in" I1 A1 H12 R0.1 F800 T99999  ; Probe only a single time
+G31 P1000 X0 Y25 Z4

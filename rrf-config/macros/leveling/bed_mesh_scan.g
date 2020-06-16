@@ -15,10 +15,10 @@
 ;; If it is not, you can view it by selecting "Show Mesh Grid Heightmap"
 ;; under the dropdown by "Auto Bed Compensation".
 M104 S0
-G29 S2                          ; remove any bed mesh compensation currently in play
+G29 S2                                   ; remove any bed mesh compensation currently in play
 M98 P"/macros/homing/scripts/zhop_up.g"
 M98 P"/macros/homing/scripts/probe_zi.g"
-;M98 P"/macros/zprobe/use_islow.g"       ; switch back to slow probing to match the /macros/homing/homezi call
+M98 P"/macros/zprobe/use_islow.g"        ; switch back to slow probing to match the /macros/homing/homezi call
 M106 P1 T150:160 H1:2 F30 X255
 G1 X25 Y0 Z5
 ; P8:       connected to Zmin SIG and GND
@@ -30,11 +30,11 @@ G1 X25 Y0 Z5
 ; R0.02     Set z-Probe recovery time to 0.02 seconds
 ; B1:       Turn off heaters while probing
 
-M558 P8 C"zprobe.in" I0 A5 H5 R0.2 F75 T400 A5 S0.01 B1	;manual islow
-G31 P1000 X0 Y25 Z0				;manual islow
+M558 P8 C"zprobe.in" I0 A5 H5 R0.2 F75 T400 A5 S0.01 B1 Z   	;manual islow
+G31 P1000 X0 Y25 Z0				 ;manual islow
 
 
-G29                             ; perform mesh scan as configured, saving to heightmap.csv
+G29                              ; perform mesh scan as configured, saving to heightmap.csv
 ;G92 S2                          ; and deactivate compenastion, because we don't want to print with it
 ;M98 P"/macros/homing/homezm.g"                 ; re-home using the mechanical switch
 
