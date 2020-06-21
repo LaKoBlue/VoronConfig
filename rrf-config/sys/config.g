@@ -15,7 +15,7 @@ M83						; ...but relative extruder moves
 ;; geometry ------------------------------------------------
 
 M667 S1                     ; corexy mode
-M208 X0 Y0 Z-0.50 S1	    ; S1 = set axes minima
+M208 X0 Y0 Z-1 S1.   	    ; S1 = set axes minima
 M208 X295.7 Y299.6 Z280 S0  ; S0 = set axes maxima
 M574 X2 Y2 Z0 S1            ; endstops
 
@@ -55,7 +55,7 @@ M569 P4 S0      ; E0 motor direction
 
 M84 S3600                           ; motor idle timeout
 M350 X16 Y16 Z16 E16 I1             ; set microstepping
-M92 X80 Y80 Z400 E553            	; set microsteps per mm
+M92 X80 Y80 Z400 E585.18           	; set microsteps per mm
 
 ; endstops
 M574 X2 S1 P"xstop"   ; X min active low endstop switch

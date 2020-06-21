@@ -12,11 +12,11 @@
 
 
 M83                     ; set extruder relative
-G1 E-10 F300            ; approximate length of nozzle plug
+G1 E-6 F300             ; approximate length of nozzle plug
 G4 P10000               ; wait a moment for filament to cool
 G1 E-16 F300            ; length of the heatbreak
 G1 E-20 F600            ; additional distance to retract slowly before speeding up
-G1 E-730 F1800          ; retract through bowden (*ADJUST* to bowden length minus 20mm, or to taste)
+G1 E-640 F1800          ; retract through bowden (*ADJUST* to bowden length minus 20mm, or to taste)
 G1 E-10 F600            ; and back to near the hobbed gear
 M400                    ; wait for moves to complete
 M84 E                   ; turn off extruder motor to allow manual jog
