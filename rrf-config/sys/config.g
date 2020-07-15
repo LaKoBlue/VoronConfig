@@ -47,10 +47,10 @@ M584 X0 Y1 Z5:6:7:8 E4				; motor bindings
 
 M569 P0 S0      ; X motor direction
 M569 P1 S0      ; Y motor direction
-M569 P5 S0      ; Z-- motor direction
-M569 P6 S1      ; Z+- motor direction
-M569 P7 S0      ; Z++ motor direction
-M569 P8 S1      ; Z++ motor direction
+M569 P5 S0      ; Z0 motor direction
+M569 P6 S1      ; Z1 motor direction
+M569 P7 S0      ; Z2 motor direction
+M569 P8 S1      ; Z3 motor direction
 M569 P4 S0      ; E0 motor direction
 
 M84 S3600                           ; motor idle timeout
@@ -100,12 +100,12 @@ M308 S11 P"S10.1" Y"dhthumidity" A"Chamber Hum[%]"       ; Attach DHT22 humidity
 
 ; fans ----------------------------------------------------
 ; part cooler
-M950 F0 C"fan2" Q20           ; part cooler, set to 500Hz PWM
-M106 P0 C"PartCooler"        ; part cooler PWMED down
+M950 F0 C"fan2" Q20          ; part cooler, set to 20Hz PWM
+M106 P0 C"PartCooler"        ; part cooler 
 
 ;Hot End
-M950 F1 C"fan0" Q20          ; hotend fan, set to 500Hz PWM
-M106 P1 T60 H1  C"toolfan" ; attach hotend fan to heater 1 and set activation temperature to 60°C
+M950 F1 C"fan0" Q20          ; hotend fan, set to 20Hz PWM
+M106 P1 T60 H1  C"toolfan"   ; attach hotend fan to heater 1 and set activation temperature to 60°C
 
 ;Electronics
 M950 F2 C"^duex.fan3"        ; 12V fan on duex. Needs pullup because duex switches ground
