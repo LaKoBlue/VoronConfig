@@ -13,7 +13,7 @@ to the fans (used for the bottom electronic compartment fan, I wasn't able to so
 
 ## Drives
 
-The Z-Drives are all connected to the Duex-Board, A-Drive, B-Drive and Extruder is connected to the Duet.
+The Z-Drives are all connected to the Duex-Board, A-Drive, B-Drive and Extruder is connected to the Duet. I'm using 1.8° steppers.
 
 | Drive    | Connector |
 |:--------:|:---------:|
