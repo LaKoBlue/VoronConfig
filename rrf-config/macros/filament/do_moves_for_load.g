@@ -5,9 +5,9 @@
 M83                     ; set extruder relative
 G1 E10 F600             ; this should reach the tip of the bowden
 G1 E20 F600             ; feed the first 20mm slowly to make sure we're feeding
-G1 E640 F3600           ; feed through the rest of the bowden (*ADJUST* to bowden length minus 20mm)
+G1 E630 F3600           ; feed through the rest of the bowden (*ADJUST* to bowden length minus 20mm)
 G1 E16 F200             ; slow down for heatbreak
-G1 E50 F100             ; fill and stabilize nozzle
+G1 E10 F100             ; fill and stabilize nozzle
 G4 P3000                ; wait for pressure and ooze
 G10                     ; retract as configured
 M400                    ; wait for moves to complete

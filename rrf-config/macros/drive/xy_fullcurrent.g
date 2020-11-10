@@ -10,6 +10,8 @@
 M913 X100 Y100          ; restore motor current percentage to 100%
 M906 X1100 Y1100        ; motor drive current
 
-M203 X18000 Y18000      ; maximum speed (mm/min)
-M201 X3600 Y3200        ; maximum acceleration (mm/min/s)
-M566 X1100 Y900         ; instantaneous speed change (mm/min)
+M203 X21000 Y21000      ; maximum speed (mm/min)
+M201 X3600 Y3200        ; maximum acceleration (mm/s²)
+M566 X240 Y300          ; instantaneous speed change / jerk (mm/min) 
+;M205 X4 Y5             ; instantaneous speed change / jerk (mm/s)
+M593 F57                ; Dynamic Accelaration : filter 57Hz 

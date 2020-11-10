@@ -7,4 +7,4 @@
 ;; *ADJUST* based on your retraction tuning WITH pressure advance
 
 M207 S3.5 R0.0 F9000 Z0.00
-M572 D0 S0.15
+M572 D0 S0.08

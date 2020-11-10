@@ -5,4 +5,4 @@
 ;; *ADJUST* these coordinates based on your build volume
 
 G90                             ; absolute positioning
-G1 X147.5 Y142.5 Z140 F6000     ; move to a centerpoint
+G1 X147.5 Y142.5 Z55 F6000      ; move to a centerpoint

@@ -14,31 +14,29 @@
 ;; The resultant heightmap should be displayed by DWC automatically.
 ;; If it is not, you can view it by selecting "Show Mesh Grid Heightmap"
 ;; under the dropdown by "Auto Bed Compensation".
-M104 S0
-G29 S2                                   ; remove any bed mesh compensation currently in play
+
+
+G29 S2                                     ; remove any bed mesh compensation currently in play
 M98 P"/macros/homing/scripts/zhop_up.g"
-M98 P"/macros/homing/scripts/probe_zi.g"
-M98 P"/macros/zprobe/use_islow.g"        ; switch back to slow probing to match the /macros/homing/homezi call
-M106 P1 T150:160 H1:2 F30 X255
-G1 X25 Y0 Z5
+;M98 P"/macros/homing/scripts/probe_zi.g"
+;M98 P"/macros/zprobe/use_islow.g"         ; switch back to slow probing
+ 
+G1 X150 Y150 Z5                            ; Now move to middle of the bed, for initial probing
 ; P8:       connected to Zmin SIG and GND
 ; I0:       P8 expects NC, TL-Q5MC2-Z is also NC
-; T18000:   Move to probe points at 300mm/s T400 is somewhat slower
+; T18000:   Move to probe points at 300mm/s 
 ; F1200:    Probing Speed: 20mm/s F75 is somewhot slower
 ; H5:       Dive height: 5mm
 ; A5 S0.01  Perform up to 5 touches until change is below 0.01mm
-; R0.02     Set z-Probe recovery time to 0.02 seconds
-; B1:       Turn off heaters while probing
+; R0.1      Set z-Probe recovery time to 0.1 seconds
+; B0        Leave heater on during probing
 
-M558 P8 C"zprobe.in" I0 A5 H5 R0.2 F75 T400 A5 S0.01 B1 Z   	;manual islow
-G31 P1000 X0 Y25 Z0				 ;manual islow
+M558 P8 C"zprobe.in" I0 H5 A5 S0.01 R0.1 F75 T18000 B0      ; define probe with slow parameters
+G31 P1000 X0 Y25 Z0                                         ; define probe offset
+G30 S-3                                                     ; probe and set the offset of the probe to trigger height (S-3)
 
 
-G29                              ; perform mesh scan as configured, saving to heightmap.csv
-;G92 S2                          ; and deactivate compenastion, because we don't want to print with it
-;M98 P"/macros/homing/homezm.g"                 ; re-home using the mechanical switch
 
-;M104 S0 ; turn off extruder
-;M140 S0 ; turn off bed
-;M84 ; disable motors
-M106 P1 T40:70 H1:2 F30 X255
+G29                             ; perform mesh scan as configured, saving to heightmap.csv
+G29 S2                          ; and deactivate compensation, because we don't want to print with it
+M98 P"/macros/moveto/center_xyz.g"                 ; move to center pos
