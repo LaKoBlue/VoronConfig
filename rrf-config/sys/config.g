@@ -82,11 +82,12 @@ M912 P0 S-8                  ; MCU tempurature sensor correction (subtract 8°K)
 M308 S0 P"bedtemp" Y"thermistor" T100000 B3950 A"Bed Pad"   ; configure sensor 0 as thermistor on pin bedtemp (pad sensor)
 M308 S2 P"e1temp" Y"thermistor" T100000 B3950 A"Bed Plate"  ; configure sensor 2 as thermistor on pin e1temp (plate sensor)
 M950 H0 C"bedheat" T2 Q10                                   ; create bed heater output on out0 and map it to sensor 2 (plate sensor). Set PWM frequency to 10Hz
-M143 H0 P100 T0 A2 S110 C0                                  ; Regulate (A2) bed heater (H0) to have pad sensor (T0) below 110°C. Use Heater monitor 100 for it
-M143 H0 P101 T0 A1 S120 C0                                  ; Shut off (A1) bed heater (H0) if pad sensor (T0) exceeds 120°C. Use Heater monitor 101 for it
-M143 H0 S120                                                ; Set bed heater max temperature to 120°C
 M307 H0 B1 S0.6                                             ; Enable Bang Bang mode and set PWM to 60% to avoid warping
 M140 P0 H0                                                  ; Mark heater H0 as bed heater (for DWC)
+M143 H0 P1 T0 A2 S110 C0                                    ; Regulate (A2) bed heater (H0) to have pad sensor (T0) below 110°C. Use Heater monitor 1 for it
+M143 H0 P2 T0 A1 S120 C0                                    ; Shut off (A1) bed heater (H0) if pad sensor (T0) exceeds 120°C. Use Heater monitor 2 for it
+M143 H0 S120                                                ; Set bed heater max temperature to 120°C, use implict monitor 0 which is implicitly configured for heater fault
+M307 H0 B1 S0.6                                             ; Enable Bang Bang mode and set PWM to 60% to avoid warping
 
 ;HotEnd
 ;M308 S1 P"e0temp" Y"thermistor" T100000 B4685 C6.5338987554e-08 A"Hotend"
